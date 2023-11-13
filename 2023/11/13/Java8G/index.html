@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java基础(一) | Feng.W</title><meta name="author" content="FengWang"><meta name="copyright" content="FengWang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java基础(一)1、Java为什么不支持多继承？首先，先说明一下哪个编程语言支持多继承的特性，那就是C++，且C++引入虚继承的特性来实现多继承。多继承其实会带来菱形继承的问题，下面叙述一下什么是菱形继承的问题。 菱形继承12345  A &#x2F; \B   C \ &#x2F;  D  在上面的示例中，类 D 继承自类 B 和类 C，而类 B 和类 C 又都继承自类 A。这种继承结构形成了一个菱形的形状，因此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础(一)">
+<meta property="og:url" content="http://example.com/2023/11/13/Java8G/index.html">
+<meta property="og:site_name" content="Feng.W">
+<meta property="og:description" content="Java基础(一)1、Java为什么不支持多继承？首先，先说明一下哪个编程语言支持多继承的特性，那就是C++，且C++引入虚继承的特性来实现多继承。多继承其实会带来菱形继承的问题，下面叙述一下什么是菱形继承的问题。 菱形继承12345  A &#x2F; \B   C \ &#x2F;  D  在上面的示例中，类 D 继承自类 B 和类 C，而类 B 和类 C 又都继承自类 A。这种继承结构形成了一个菱形的形状，因此">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/92988270?s=400&u=fec336aefb9165244e5e53fe834afdc23f25db9f&v=4">
+<meta property="article:published_time" content="2023-11-13T06:43:35.000Z">
+<meta property="article:modified_time" content="2023-11-13T11:46:43.577Z">
+<meta property="article:author" content="FengWang">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/92988270?s=400&u=fec336aefb9165244e5e53fe834afdc23f25db9f&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/13/Java8G/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L6EVGFKGKM"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-L6EVGFKGKM');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java基础(一)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-13 19:46:43'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/92988270?s=400&amp;u=fec336aefb9165244e5e53fe834afdc23f25db9f&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Feng.W"><img class="site-icon" src="https://avatars.githubusercontent.com/u/92988270?s=400&amp;u=fec336aefb9165244e5e53fe834afdc23f25db9f&amp;v=4"/><span class="site-name">Feng.W</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Java基础(一)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-13T06:43:35.000Z" title="Created 2023-11-13 14:43:35">2023-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-13T11:46:43.577Z" title="Updated 2023-11-13 19:46:43">2023-11-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/Java%E5%9F%BA%E7%A1%80/">Java基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>14mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java基础(一)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Java基础-一"><a href="#Java基础-一" class="headerlink" title="Java基础(一)"></a>Java基础(一)</h1><h2 id="1、Java为什么不支持多继承？"><a href="#1、Java为什么不支持多继承？" class="headerlink" title="1、Java为什么不支持多继承？"></a>1、Java为什么不支持多继承？</h2><p>首先，先说明一下哪个编程语言支持多继承的特性，那就是C++，且C++引入<strong>虚继承</strong>的特性来实现多继承。多继承其实会带来<strong>菱形继承</strong>的问题，下面叙述一下什么是<strong>菱形继承</strong>的问题。</p>
+<h3 id="菱形继承"><a href="#菱形继承" class="headerlink" title="菱形继承"></a>菱形继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  A</span><br><span class="line"> / \</span><br><span class="line">B   C</span><br><span class="line"> \ /</span><br><span class="line">  D</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，类 <code>D</code> 继承自类 <code>B</code> 和类 <code>C</code>，而类 <code>B</code> 和类 <code>C</code> 又都继承自类 <code>A</code>。这种继承结构形成了一个菱形的形状，因此称为菱形继承。</p>
+<p>菱形继承问题可能导致以下问题：</p>
+<ol>
+<li><p>冗余数据：由于类 <code>D</code> 继承自类 <code>B</code> 和类 <code>C</code>，而这两个父类都继承自类 <code>A</code>，因此类 <code>D</code> 中会包含类 <code>A</code> 的成员变量和方法的冗余拷贝。这造成了内存空间的浪费。</p>
+</li>
+<li><p>命名冲突：如果类 <code>A</code> 中有一个成员变量或方法，在类 <code>B</code> 和类 <code>C</code> 中都进行了重写或更改，那么在类 <code>D</code> 中就会出现命名冲突。这可能导致编译错误或不符合预期的行为。</p>
+</li>
+<li><p>多重继承的二义性：如果类 <code>A</code> 中的成员变量或方法在类 <code>B</code> 和类 <code>C</code> 中没有进行重写或更改，而在类 <code>D</code> 中需要访问这些成员时，编译器可能会产生二义性，无法确定应该使用哪个父类的成员。</p>
+<p><strong>C++的虚继承允许在继承链中共享一个公用的基类子对象，从而避免冗余和二义性的问题。</strong></p>
+</li>
+</ol>
+<h3 id="Java8中的多继承"><a href="#Java8中的多继承" class="headerlink" title="Java8中的多继承"></a>Java8中的多继承</h3><p>关于Java的多继承问题，其作者James Gosling回答过，</p>
+<p>“Java之所以不支持一个类继承多个类，主要是因为在设计之初我们听取了来自C++和Objective-C等阵营的人的意见。因为多继承会产生很多歧义问题。”这个歧义问题就是上文说的菱形继承问题。</p>
+<p><strong>Java虽然不支持多继承，但支持多实现，也就是说同一个类可以同时实现多个接口。</strong></p>
+<p>我们知道，在Java 8以前，接口中是不能有方法的实现的。所以一个类同时实现多个接口的话，也不会出现C++中的歧义问题。因为所有方法都没有方法体，真正的实现还是在子类中的。</p>
+<p>但是，Java8中支持了默认函数（default method），即接口中可以定义一个有方法体的方法了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;pet Is Eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而有因为Java支持同时实现多个接口，这就相当于通过implements就可以从多个接口中继承到多个方法了，这不就是变相的支持了多继承吗？</p>
+<p>那么。Java是怎么解决菱形继承的问题呢？再定义一个哺乳动物接口，也定义一个eat方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Mammal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Mammal Is Eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再定义一个Cat类，让他分别实现两个接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">implements</span> <span class="title class_">Pet</span>,Mammal &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候，编译器会报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: class Cat inherits unrelated defaults for eat( from types Mammaand Pet</span><br></pre></td></tr></table></figure>
+
+<p>这时候，就要求Cat类中，必须重写eat()方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">implements</span> <span class="title class_">Pet</span>,Mammal &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Cat Is Eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以，可以看到Java并没有帮我们解决多继承的歧义问题，而是把这个问题留给开发人员，通过重写方法的方式自行解决。</p>
+<h2 id="2、接口和抽象类的区别"><a href="#2、接口和抽象类的区别" class="headerlink" title="2、接口和抽象类的区别"></a>2、接口和抽象类的区别</h2><p><strong>从职责上来看：</strong></p>
+<p>1、接口主要用于指定规范，因为我们提倡也经常使用的都是面向接口编程。</p>
+<p>2、抽象类主要目的是为了复用，比较典型的就是模板方法模式。</p>
+<p><strong>从表面看：</strong></p>
+<p>1、接口与抽象类，最明显的区别就是接口只是定义了一些方法而已，在不考虑Java8中default方法情况下，接口中是没有具体实现代码的。</p>
+<p>2、抽象类的抽象方法可以有public、protected和default这些修饰符，而接口中默认修饰是public。不可以使用其他修饰符。</p>
+<p><strong>总结：</strong></p>
+<p>一般在实际开发中，我们会先把接口暴露给外部，然后在业务代码中实现接口。如果多个实现类中有相同可复用的代码，则在接口和实现类中间加一层抽象类，将公用部分代码抽出到抽象类中。可以参考下模板方法模式，这是一个很好的理解接口、抽象类和实现类之间关系的设计模式。</p>
+<h2 id="3、Java中有了基本类型为什么还需要包装类？"><a href="#3、Java中有了基本类型为什么还需要包装类？" class="headerlink" title="3、Java中有了基本类型为什么还需要包装类？"></a>3、Java中有了基本类型为什么还需要包装类？</h2><p>Java中有8种基本数据类型，这些基本数据类型又都有对应的包装类。</p>
+<table>
+<thead>
+<tr>
+<th align="center">分类</th>
+<th align="center">基本数据类型</th>
+<th align="center">包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">布尔型</td>
+<td align="center">boolean</td>
+<td align="center">Boolean</td>
+</tr>
+<tr>
+<td align="center">整型</td>
+<td align="center">byte</td>
+<td align="center">Byte</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">short</td>
+<td align="center">Short</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">int</td>
+<td align="center">Integer</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">long</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td align="center">字符型</td>
+<td align="center">char</td>
+<td align="center">Character</td>
+</tr>
+<tr>
+<td align="center">浮点型</td>
+<td align="center">float</td>
+<td align="center">Float</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">double</td>
+<td align="center">Double</td>
+</tr>
+</tbody></table>
+<p>因为Java是一种面向对象语言，很多地方都需要使用对象而不是基本数据类型。比如，在集合类种，我们无法将int、double等基本数据类型放进去的。<strong>因为集合的容器要求元素是Object类型</strong>。</p>
+<p>为了让基本类型也具有对象的特征，就出现了包装类型，它相当于将基本类型包装起来”，使得它具有了对象的性质，并且为其添加了属性和方法，丰富了基本类型的操作。</p>
+<h4 id="基本类型与包装类型的区别"><a href="#基本类型与包装类型的区别" class="headerlink" title="基本类型与包装类型的区别"></a>基本类型与包装类型的区别</h4><p>1、默认值的不同，基本类型的默认值为0，false或\u0000等，包装类默认为null。</p>
+<p>2、初始化方式不同，一个需要new，一个不需要。</p>
+<p>3、存储方式不同，<strong>基本类型保存在栈上，包装类对象保存在堆上</strong>。</p>
+<h4 id="如何理解自动拆装箱"><a href="#如何理解自动拆装箱" class="headerlink" title="如何理解自动拆装箱"></a>如何理解自动拆装箱</h4><p><strong>拆箱与装箱</strong>：包装类是堆基本类型的包装，所以，<strong>把基本数据类型转换成包装类的过程就是装箱</strong>；反之，<strong>把包装类转换成基本数据类型的过程就是拆箱</strong>。</p>
+<p><strong>自动拆装箱：</strong>在Java SE5中，为了减少开发人员的工作，Java提供了自动拆装箱的功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span>;<span class="comment">//自动装箱</span></span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> i;<span class="comment">//自动装箱</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>自动拆装箱原理：</strong>自动装箱都是通过包装类的<code>valueOf()</code>方法来实现的。自动拆箱都是通过包装类对象的<code>Value()</code>方法实现的。</p>
+<h4 id="那些地方会自动拆装箱"><a href="#那些地方会自动拆装箱" class="headerlink" title="那些地方会自动拆装箱"></a>那些地方会自动拆装箱</h4><p><strong>1、将基本数据类型放入集合类</strong></p>
+<p>以下代码是不会报错的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; li = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; <span class="number">5</span>; i ++)&#123;</span><br><span class="line">    li.add(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将上面代码反编译，可以得到以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; li = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; <span class="number">5</span>; i ++)&#123;</span><br><span class="line">    li.add(Integer.valueof(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、包装类型和基本类型的大小比较</strong></p>
+<p><strong>3、包装类型的运算</strong></p>
+<p><strong>4、三目运算符的使用</strong></p>
+<p><strong>5、函数参数与返回值</strong></p>
+<h2 id="4、为什么不能用浮点数表示金额"><a href="#4、为什么不能用浮点数表示金额" class="headerlink" title="4、为什么不能用浮点数表示金额"></a>4、为什么不能用浮点数表示金额</h2><p>因为不是所有的小数都能用二进制标识，所以，为了解决这个问题，IEEE提出了一种使用近似值表示小数的方式，并且引入了精度的概念。这就是我们所熟知的浮点数。</p>
+<p>所以，浮点数只是近似值，并不是精确值，不能用来表示金额。否则会有精度丢失的现象。</p>
+<h4 id="避免精度丢失"><a href="#避免精度丢失" class="headerlink" title="避免精度丢失"></a>避免精度丢失</h4><p>在Java中，使用float表示单精度浮点数，double表示双精度浮点数，表示的都是近似值。</p>
+<p>所以，在Java代码中，千万不要使用float或者double来进行高精度运算。为了解决这样的精度问题，Java提供了<strong>BigDecimal</strong>来进行精确运算。</p>
+<h2 id="5、为什么不能用BigDecimal的equals方法做等值比较？"><a href="#5、为什么不能用BigDecimal的equals方法做等值比较？" class="headerlink" title="5、为什么不能用BigDecimal的equals方法做等值比较？"></a>5、为什么不能用BigDecimal的equals方法做等值比较？</h2><p>因为<code>BigDecimal</code>的<code>equals</code>方法和<code>compareTo</code>并不一样，equals方法会比较两部分内容，分别是值(value)和标度(scale)，而对于0.1和0.10这两个数字，他们的值虽然一样，但是精度是不一样的，所以在使用<code>equals</code>比较时会返回false。</p>
+<h2 id="6、BigDecimal-double-和BigDecimal-String-有什么区别？"><a href="#6、BigDecimal-double-和BigDecimal-String-有什么区别？" class="headerlink" title="6、BigDecimal(double)和BigDecimal(String)有什么区别？"></a>6、BigDecimal(double)和BigDecimal(String)有什么区别？</h2><p>有区别，而且区别很大。</p>
+<p>因为double是不精确的，所以使用一个不精确的数字来创建<code>BiqDeciaml</code>，得到的数字也是不精确的。如0.1这个数字，double只能表示他的近似值</p>
+<p>所以，当我们使用<code>new BigDecimal(0.1)</code>创建一个<code>BigDecimal</code> 的时候，其实创建出来的值并不是正好等于0.1的。</p>
+<p>而是0.1000000000000000055511151231257827021181583404541015625。这是因为double自身表示的只是一个近似值。</p>
+<p><strong>而对于<code>BigDecimal(String)</code>，当我们使用<code>new BigDecimal(&quot;0.1&quot;)</code>创建一个<code>BigDecimal</code>的时候，其实创建出来的值正好就是等于0.1的</strong></p>
+<p>那么他的标度也就是1。</p>
+<h2 id="7、为什么对Java中的负数取绝对值结果不一定是正数？"><a href="#7、为什么对Java中的负数取绝对值结果不一定是正数？" class="headerlink" title="7、为什么对Java中的负数取绝对值结果不一定是正数？"></a>7、为什么对Java中的负数取绝对值结果不一定是正数？</h2><p>假如，我们要用<code>Math.abs</code>对一个Integer取绝对值的时候，如果用如下方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.abs(orderId.hashCode());</span><br></pre></td></tr></table></figure>
+
+<p>得到的结果可能是个负数。原因要从Integer的取值范围说起，int的取值范围是-2^31^  —  (2^31^) - 1，即-2147483648 至 2147483647。那么，当我们使用abs取绝对值时候，想要取得-2147483648的绝对值，那应该是2147483648。但是，2147483648大于了2147483647，即超过了int的取值范围这时候就会发生越界。</p>
+<p>2147483647用二进制的补码表示是:<code>01111111 11111111 11111111 11111111</code></p>
+<p>这个数+1得到：<code>10000000 00000000 00000000 00000000</code></p>
+<p>这就是-2147483648的补码。</p>
+<p>虽然，这种情况发生的概率很低，只有当要取绝对值的数宁是-2147483648的时候，得到的数宇还是个负数。</p>
+<p>如何解决这种问题呢？</p>
+<p>既然是因为越界了导致最终结果变成负数，那就解决越界的问题就行了，那就是在取绝对值之前，把这个int类型转成long类型，这样就不会出现越界了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.abs((<span class="type">long</span>)orderId.hashCode());</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、String、StringBuilder和StringBuffer的区别？"><a href="#8、String、StringBuilder和StringBuffer的区别？" class="headerlink" title="8、String、StringBuilder和StringBuffer的区别？"></a>8、String、StringBuilder和StringBuffer的区别？</h2><p><code>String</code>是<strong>不可变</strong>的，<code>StringBuilder</code>和<code>StringBuffer</code>是<strong>可变</strong>的。而<code>StringBuffer</code>是<strong>线程安全</strong>的，而<code>StringBuilder</code>是<strong>非线程安全</strong>的。</p>
+<h4 id="String是如何实现不可变的？"><a href="#String是如何实现不可变的？" class="headerlink" title="String是如何实现不可变的？"></a>String是如何实现不可变的？</h4><p>下面是JDK1.8的String源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">Stringimplements</span> java.io.Serializable， Comparable&lt;String&gt;， CharSequence&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">char</span> value[];</span><br><span class="line">    <span class="comment">/** use serialVersionUID from JDK 1.0.2 for interoperability */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialversionUID</span> <span class="operator">=</span> -<span class="number">6849794470754667710L</span>;</span><br><span class="line">    <span class="keyword">public</span> string <span class="title function_">substring</span><span class="params">(<span class="type">int</span> beginIndex)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (beginIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">StringIndexOutOfBoundsException</span>(beginIndex);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">subLen</span> <span class="operator">=</span> value.length - beginIndex;</span><br><span class="line">        <span class="keyword">if</span> (subLen &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">StringIndexOutofBoundsException</span>(subLen);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (beginIndex == <span class="number">0</span>) ? <span class="built_in">this</span> : <span class="keyword">new</span> <span class="title class_">String</span>(value, beginIndex, subLen);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> string <span class="title function_">concat</span><span class="params">(string str)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">otherLen</span> <span class="operator">=</span> str.length();</span><br><span class="line">        <span class="keyword">if</span> (otherLen == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> valuelength;</span><br><span class="line">        <span class="type">char</span> buf[] = Arrays.copyof(value, len + otherLen);</span><br><span class="line">        str.getChars(buf, len);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">string</span>(buf, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码，其实就包含了String不可变的主要实现了</p>
+<p>首先，用final修饰类，那么表示这个类是不可以被继承的，那么他里面的方法就是没办法被覆盖的。</p>
+<p>其次，用final修饰字符串内容的char[]，那么表示这个字符数组是不可变的。(JDK 1.9开始，char[]变成了byte[])</p>
+<p>再然后，在他的一些方法中，如果涉及到字符串的修改，也是通过new String()的方式新建了一个字符串。</p>
+<p>所以，通过以上方式，使得一个字符串的内容，一旦被创建出来，就是不可以修改的了。</p>
+<p><strong>所以，一旦一个String对象在内存(堆)中被创建出来，他就无法被修改。而且，String类的所有方法都没有改变字符串本身的值，都是返回了一个新的对象。</strong></p>
+<p>如果我们想要一个可修改的字符串，可以选择<code>StringBuffer</code>或者<code>StringBuilder</code>这两个代替<code>String</code>。</p>
+<h4 id="String为什么设计成不可变的？"><a href="#String为什么设计成不可变的？" class="headerlink" title="String为什么设计成不可变的？"></a>String为什么设计成不可变的？</h4><p>主要从缓存、安全性、线程安全和性能等角度出发。</p>
+<p><strong>缓存</strong></p>
+<p>字符串是使用最广泛的数据结构。大量的字符串的创建是非常耗费资源的，所以，Java提供了对字符串的缓存功能，可以大大的节省堆空间。</p>
+<p>JVM中专门开辟了一部分空间来存储Java字符串，那就是字符串池。</p>
+<p>通过字符串池，两个内容相同的字符串变量，可以从池中指向同一个字符串对象从而节省了关键的内存资源.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;abcd&quot;</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> s;</span><br></pre></td></tr></table></figure>
+
+<p>对于这个例子，s和s2都表示“abcd”，所以他们会指向字符串池中的同一个字符串对象：</p>
+<img src="/2023/11/13/Java8G/1.png" class="" title="缓存">
+
+<p>但是，之所以这么做，主要是因为字符串的不变性。试想一下，如果字符串是可变的，我们一旦修改了s的内容，那必然导致s2的内容也被改变了。</p>
+<p><strong>安全性</strong></p>
+<p>字符串在Java应用程序中广泛用于存储敏感信息，如用户名、密码、连接<code>url</code>、网络连接等。<code>JVM</code>类加载器在加载类的时也广泛地使用它。但是，如果是可变的，那么这个字符串内容就可能随时都被修改。那么这个字符串内容就完全不可信了。这样整个系统就没有安全性可言了。</p>
+<p><strong>线程安全</strong></p>
+<p>不可变会自动使得字符串成为线程安全，因为当从多个线程访问它们时，它们不会被更改。</p>
+<p><strong>hashcode缓存</strong></p>
+<p>由于字符串对象被广泛地用作数据结构，它们也被广泛地用于哈希实现，如<code>HashMap</code>、<code>HashTable</code>、<code>HashSet</code>等。在对这些散列实现进行操作时，经常调用<code>hashCode()</code>方法。</p>
+<p>不可变性保证了字符串的值不会改变。因此，<code>hashcode()</code>方法在<code>String</code>类中被重写，以便更高效地计算字符串的哈希码。<code>String</code> 的 <code>hashCode()</code> 方法将字符串的内容作为输入，根据一定的算法生成哈希码。为了提高性能，<code>String </code>对象在创建时会计算并缓存它的哈希码值。这意味着，当多次调用同一个字符串对象的 <code>hashCode()</code> 方法时，不需要重新计算哈希码，而是直接返回已缓存的值。</p>
+<p>由于 <code>String </code>对象的不可变性，可以确保在创建时生成的哈希码是有效且不变的。这样，在哈希表等数据结构中，可以使用 <code>String</code> 对象的哈希码作为索引，快速定位和比较字符串，提高查找效率。</p>
+<p><strong>性能</strong></p>
+<p>前面提到了的字符串池、<code>hashcode</code>缓存等，都是提升性能的体现。</p>
+<h4 id="String的-“-”-是如何实现的"><a href="#String的-“-”-是如何实现的" class="headerlink" title="String的 “+” 是如何实现的"></a>String的 “+” 是如何实现的</h4><p><strong>使用+拼接字符串，其实只是Java提供的一个语法糖。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">wechat</span> <span class="operator">=</span> <span class="string">&quot;WANG.F&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">intro</span> <span class="operator">=</span> <span class="string">&quot;122345&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">sum</span> <span class="operator">=</span> wechat + <span class="string">&quot;,&quot;</span> + intro;</span><br><span class="line"><span class="comment">//经过jad反编译后</span></span><br><span class="line"><span class="type">String</span> <span class="variable">wechat</span> <span class="operator">=</span> <span class="string">&quot;WANG.F&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">intro</span> <span class="operator">=</span> <span class="string">&quot;122345&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">sum</span> <span class="operator">=</span> (<span class="keyword">new</span> <span class="title class_">StringBuilder</span>()).append(wechat).append(<span class="string">&quot;,&quot;</span>).append(intro).toString();</span><br></pre></td></tr></table></figure>
+
+<p>通过查看反编译以后的代码，可以发现，在使用 + 进行字符串拼接时，将<code>String</code>转成了<code>StringBuilder</code>后，使用其<code>append</code>方法进行处理的。</p>
+<p><strong>StringBuffer和StringBuilder</strong></p>
+<p>和String类相似，<code>StringBuilder</code>类也封装了一个字符数组，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>[] value	</span><br></pre></td></tr></table></figure>
+
+<p>与<code>String</code>不同的是，<code>StringBuilder</code>并不是<code>final</code>的，所以他是可以修改的。另外，与<code>String</code>不同，字符数组中不一定所有位置都已经被使用，它有一个实例变量，表示数组中已经使用的字符个数，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> count;</span><br></pre></td></tr></table></figure>
+
+<p><code>append</code>方法源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> StringBuilder <span class="title function_">append</span><span class="params">(String str)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>.append(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该类继承了<code>AbstractStringBuilder</code>类，看下其<code>append</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> AbstractStringBuilder <span class="title function_">append</span><span class="params">(String str)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(str == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> appendNull();</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> str.length();</span><br><span class="line">    ensureCapcityInternal(count + len);</span><br><span class="line">    str.getChars(<span class="number">0</span>,len,value,count);</span><br><span class="line">    count += len;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>append</code>方法会直接拷贝字符到内部的字符数组中，如果字符数组长度不够，会进行扩展。</p>
+<p><code>StringBuffer</code> 和 <code>StringBuilder </code>类似，最大的区别就是<code> stringBuffer</code>是线程安全的， <code>stringBuffer </code>的<code>append</code>方法如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> StringBuffer <span class="title function_">append</span><span class="params">(String str)</span>&#123;</span><br><span class="line">    toStringCache = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">super</span>.append(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该方法使用 <code>synchronized</code> 进行声明，说明是一个线程安全的方法。而 <code>stringBuilder </code>则不是线程安全的。</p>
+<p><strong>不要在for循环中使用 + 拼接字符串</strong></p>
+<p>因为 + 运算是依托<code>StringBuilder.append()</code>方法进行实现的，在for循环中，每次都是<code>new</code>了一个<code>StringBuilder</code>，然后再把<code>String</code>转成<code>StringBuilder</code>，在进行<code>append</code>。</p>
+<p>而这种频繁的新建对象会耗费很长时间，而且会造成内存资源的浪费。</p>
+<p>所以，建议循环体内，字符串的连接方式，使用<code>StringBuilder</code>的<code>append</code>方法进行扩展，而不是使用 <code>+</code>。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">FengWang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/13/Java8G/">http://example.com/2023/11/13/Java8G/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/92988270?s=400&amp;u=fec336aefb9165244e5e53fe834afdc23f25db9f&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/11/09/%E9%93%BE%E8%A1%A8%E7%AE%97%E6%B3%95/" title="链表算法(二)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">链表算法(二)</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/92988270?s=400&amp;u=fec336aefb9165244e5e53fe834afdc23f25db9f&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FengWang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/endeavor-FF" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:1721063633@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80-%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text">Java基础(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Java%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">1、Java为什么不支持多继承？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8F%B1%E5%BD%A2%E7%BB%A7%E6%89%BF"><span class="toc-number">1.1.1.</span> <span class="toc-text">菱形继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java8%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="toc-number">1.1.2.</span> <span class="toc-text">Java8中的多继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">2、接口和抽象类的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81Java%E4%B8%AD%E6%9C%89%E4%BA%86%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E9%9C%80%E8%A6%81%E5%8C%85%E8%A3%85%E7%B1%BB%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">3、Java中有了基本类型为什么还需要包装类？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">基本类型与包装类型的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">如何理解自动拆装箱</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%A3%E4%BA%9B%E5%9C%B0%E6%96%B9%E4%BC%9A%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">那些地方会自动拆装箱</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%94%A8%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA%E9%87%91%E9%A2%9D"><span class="toc-number">1.4.</span> <span class="toc-text">4、为什么不能用浮点数表示金额</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">避免精度丢失</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%94%A8BigDecimal%E7%9A%84equals%E6%96%B9%E6%B3%95%E5%81%9A%E7%AD%89%E5%80%BC%E6%AF%94%E8%BE%83%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">5、为什么不能用BigDecimal的equals方法做等值比较？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81BigDecimal-double-%E5%92%8CBigDecimal-String-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">6、BigDecimal(double)和BigDecimal(String)有什么区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AF%B9Java%E4%B8%AD%E7%9A%84%E8%B4%9F%E6%95%B0%E5%8F%96%E7%BB%9D%E5%AF%B9%E5%80%BC%E7%BB%93%E6%9E%9C%E4%B8%8D%E4%B8%80%E5%AE%9A%E6%98%AF%E6%AD%A3%E6%95%B0%EF%BC%9F"><span class="toc-number">1.7.</span> <span class="toc-text">7、为什么对Java中的负数取绝对值结果不一定是正数？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.8.</span> <span class="toc-text">8、String、StringBuilder和StringBuffer的区别？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84%EF%BC%9F"><span class="toc-number">1.8.0.1.</span> <span class="toc-text">String是如何实现不可变的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%BE%E8%AE%A1%E6%88%90%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84%EF%BC%9F"><span class="toc-number">1.8.0.2.</span> <span class="toc-text">String为什么设计成不可变的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String%E7%9A%84-%E2%80%9C-%E2%80%9D-%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-number">1.8.0.3.</span> <span class="toc-text">String的 “+” 是如何实现的</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/13/Java8G/" title="Java基础(一)">Java基础(一)</a><time datetime="2023-11-13T06:43:35.000Z" title="Created 2023-11-13 14:43:35">2023-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/09/%E9%93%BE%E8%A1%A8%E7%AE%97%E6%B3%95/" title="链表算法(二)">链表算法(二)</a><time datetime="2023-11-09T13:03:26.000Z" title="Created 2023-11-09 21:03:26">2023-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/07/%E9%93%BE%E8%A1%A8%E7%AE%97%E6%B3%95/" title="链表算法(一)">链表算法(一)</a><time datetime="2023-11-07T12:43:32.000Z" title="Created 2023-11-07 20:43:32">2023-11-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/05/c-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" title="c++智能指针">c++智能指针</a><time datetime="2023-11-05T14:23:04.000Z" title="Created 2023-11-05 22:23:04">2023-11-05</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/11/02/hello-world/" title="Hello World">Hello World</a><time datetime="2023-11-02T02:43:24.932Z" title="Created 2023-11-02 10:43:24">2023-11-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By FengWang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
